@@ -1,26 +1,334 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ededeb;
+  --foreground: #151515;
+  --panel: #f8f8f6;
+  --muted: #d8d8d5;
+  --line: rgba(20, 20, 20, 0.09);
+  --accent: #e8ff5f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(
+      circle at 70% 90%,
+      rgba(154, 219, 207, 0.5),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 42% 92%,
+      rgba(157, 174, 231, 0.4),
+      transparent 26%
+    ),
+    #efefed;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dark body {
+  background:
+    radial-gradient(
+      circle at 72% 92%,
+      rgba(80, 100, 96, 0.22),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 42% 92%,
+      rgba(90, 96, 145, 0.18),
+      transparent 26%
+    ),
+    #09090b;
+  color: #f4f4f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: #e8ff5f;
+  color: #111;
+}
+
+/* ----------------------------- */
+/* Dark mode system overrides    */
+/* ----------------------------- */
+
+.dark [class~="bg-[#d5d5d3]/85"],
+.dark [class~="bg-[#d5d5d3]/80"] {
+  background-color: rgba(24, 24, 27, 0.88) !important;
+}
+
+.dark [class~="bg-white"],
+.dark [class~="bg-white/45"],
+.dark [class~="bg-white/55"],
+.dark [class~="bg-white/60"],
+.dark [class~="bg-white/65"],
+.dark [class~="bg-white/70"] {
+  background-color: rgba(39, 39, 42, 0.72) !important;
+}
+
+.dark [class~="bg-[#f4f4f2]"],
+.dark [class~="bg-[#dededb]"] {
+  background-color: rgba(24, 24, 27, 0.95) !important;
+}
+
+.dark [class~="bg-zinc-950"] {
+  background-color: #f4f4f5 !important;
+}
+
+.dark [class~="text-white"] {
+  color: #09090b !important;
+}
+
+.dark [class~="text-zinc-950"]:not([class~="bg-[#e8ff5f]"]) {
+  color: #f8fafc !important;
+}
+
+.dark [class~="text-zinc-800"],
+.dark [class~="text-zinc-700"] {
+  color: #e4e4e7 !important;
+}
+
+.dark [class~="text-zinc-600"],
+.dark [class~="text-zinc-500"] {
+  color: #a1a1aa !important;
+}
+
+.dark [class~="text-zinc-400"] {
+  color: #71717a !important;
+}
+
+.dark [class~="border-black/10"] {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark [class~="ring-black/5"],
+.dark [class~="ring-black/10"] {
+  --tw-ring-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: rgba(39, 39, 42, 0.95) !important;
+  color: #f4f4f5 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #71717a !important;
+}
+
+.dark option {
+  background-color: #18181b;
+  color: #f4f4f5;
+}
+
+.dark [class~="bg-[#e8ff5f]"],
+.dark [class~="bg-[#e8ff5f]"] * {
+  color: #111111 !important;
+}
+
+.dark [class~="bg-red-50"] {
+  background-color: rgba(127, 29, 29, 0.22) !important;
+}
+
+.dark [class~="text-red-600"],
+.dark [class~="text-red-700"] {
+  color: #fca5a5 !important;
+}
+
+.dark [class~="ring-red-200"],
+.dark [class~="ring-red-100"] {
+  --tw-ring-color: rgba(248, 113, 113, 0.24) !important;
+}
+
+.dark [class~="bg-emerald-50"] {
+  background-color: rgba(6, 95, 70, 0.2) !important;
+}
+
+.dark [class~="text-emerald-600"],
+.dark [class~="text-emerald-700"] {
+  color: #86efac !important;
+}
+
+.dark [class~="ring-emerald-200"],
+.dark [class~="ring-emerald-100"] {
+  --tw-ring-color: rgba(52, 211, 153, 0.24) !important;
+}
+
+.dark [class~="bg-amber-50"] {
+  background-color: rgba(120, 53, 15, 0.22) !important;
+}
+
+.dark [class~="text-amber-600"],
+.dark [class~="text-amber-700"] {
+  color: #fcd34d !important;
+}
+
+.dark [class~="ring-amber-200"],
+.dark [class~="ring-amber-100"] {
+  --tw-ring-color: rgba(251, 191, 36, 0.24) !important;
+}
+
+.dark [class~="shadow-sm"] {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22) !important;
+}
+
+.dark [class~="shadow-[0_30px_90px_rgba(0,0,0,0.12)]"] {
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ----------------------------- */
+/* Dark mode green button polish  */
+/* ----------------------------- */
+
+.dark button:focus,
+.dark a:focus,
+.dark select:focus,
+.dark input:focus,
+.dark textarea:focus {
+  outline: none !important;
+}
+
+.dark button:focus-visible,
+.dark a:focus-visible,
+.dark select:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible {
+  box-shadow:
+    0 0 0 2px rgba(232, 255, 95, 0.95),
+    0 0 0 6px rgba(232, 255, 95, 0.14) !important;
+}
+
+.dark [class~="focus:ring-[#e8ff5f]"] {
+  --tw-ring-color: rgba(232, 255, 95, 0.95) !important;
+}
+
+.dark [class~="bg-[#e8ff5f]"] {
+  background-color: #e8ff5f !important;
+  color: #111111 !important;
+}
+
+.dark [class~="hover:bg-[#e8ff5f]"]:hover {
+  background-color: #e8ff5f !important;
+  color: #111111 !important;
+}
+
+.dark [class~="hover:bg-zinc-950"]:hover {
+  background-color: #e8ff5f !important;
+  color: #111111 !important;
+}
+
+.dark [class~="hover:text-white"]:hover {
+  color: #111111 !important;
+}
+
+.dark .active-green-control {
+  background-color: #e8ff5f !important;
+  color: #111111 !important;
+}
+/* ----------------------------- */
+/* Dark mode consistent green UI */
+/* ----------------------------- */
+
+.dark {
+  --gymflow-accent: #e8ff5f;
+  --gymflow-accent-soft: rgba(232, 255, 95, 0.14);
+  --gymflow-accent-ring: rgba(232, 255, 95, 0.45);
+}
+
+/* Keep all main clickable controls consistent in dark mode */
+.dark button:not(:disabled):hover,
+.dark a:not(:disabled):hover {
+  border-color: rgba(232, 255, 95, 0.45) !important;
+}
+
+/* Convert common old grey/white hovers into GymFlow green */
+.dark [class~="hover:bg-white"]:hover,
+.dark [class~="hover:bg-white/60"]:hover,
+.dark [class~="hover:bg-white/70"]:hover,
+.dark [class~="hover:bg-[#f4f4f2]"]:hover,
+.dark [class~="hover:bg-zinc-950"]:hover,
+.dark [class~="hover:bg-zinc-900"]:hover,
+.dark [class~="hover:bg-zinc-800"]:hover,
+.dark [class~="hover:bg-zinc-200"]:hover {
+  background-color: var(--gymflow-accent) !important;
+  color: #111111 !important;
+}
+
+/* Make text inside hovered controls readable */
+.dark [class~="hover:bg-white"]:hover *,
+.dark [class~="hover:bg-white/60"]:hover *,
+.dark [class~="hover:bg-white/70"]:hover *,
+.dark [class~="hover:bg-[#f4f4f2]"]:hover *,
+.dark [class~="hover:bg-zinc-950"]:hover *,
+.dark [class~="hover:bg-zinc-900"]:hover *,
+.dark [class~="hover:bg-zinc-800"]:hover *,
+.dark [class~="hover:bg-zinc-200"]:hover * {
+  color: #111111 !important;
+}
+
+/* Fix hover text classes that force white/black inconsistently */
+.dark [class~="hover:text-white"]:hover,
+.dark [class~="hover:text-zinc-950"]:hover,
+.dark [class~="hover:text-zinc-900"]:hover,
+.dark [class~="hover:text-zinc-800"]:hover {
+  color: #111111 !important;
+}
+
+/* Green focus ring everywhere */
+.dark button:focus-visible,
+.dark a:focus-visible,
+.dark select:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px rgba(232, 255, 95, 0.95),
+    0 0 0 6px rgba(232, 255, 95, 0.14) !important;
+}
+
+/* Keep active green buttons consistent */
+.dark [class~="bg-[#e8ff5f]"],
+.dark [class~="bg-[#e8ff5f]"] * {
+  background-color: #e8ff5f !important;
+  color: #111111 !important;
+}
+
+/* Inputs/selects: green focus instead of blue */
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  box-shadow:
+    0 0 0 2px rgba(232, 255, 95, 0.85),
+    0 0 0 6px rgba(232, 255, 95, 0.12) !important;
+}
+
+/* Disabled controls should not turn green */
+.dark button:disabled,
+.dark a[aria-disabled="true"] {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+.dark button:disabled:hover,
+.dark a[aria-disabled="true"]:hover {
+  background-color: rgba(39, 39, 42, 0.72) !important;
+  color: #a1a1aa !important;
 }
