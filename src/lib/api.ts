@@ -23,7 +23,10 @@ export type ApiResponse<T> = {
 };
 
 function shouldUseMockApi() {
-  return process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
+  return (
+    process.env.NEXT_PUBLIC_USE_MOCK_API === "true" ||
+    process.env.NEXT_PUBLIC_USE_MOCK_API === "1"
+  );
 }
 
 function getStoredToken() {
